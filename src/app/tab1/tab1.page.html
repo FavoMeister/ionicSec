@@ -1,17 +1,20 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      My Shopping List
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-item class="ion-text-center" lines="none" *ngIf="shoppingList.isEmpty">
+    <ion-label>There are no items in your list</ion-label>
+  </ion-item>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <ion-list *ngIf="!shoppingList.isEmpty">
+    <ion-item *ngFor="let item of shoppingList.items">
+      <ion-label>{{item}}</ion-label>
+    </ion-item>
+  </ion-list>
+
 </ion-content>
