@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ShoppingItemService } from '../services/shopping-item.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab1',
@@ -10,7 +11,30 @@ import { ShoppingItemService } from '../services/shopping-item.service';
 export class Tab1Page {
 
   constructor(
-    public shoppingList: ShoppingItemService
+    public shoppingList: ShoppingItemService,
+    private alertController: AlertController
   ) {}
 
+  async removeItem(item: string){
+    const alert =  await this.alertController.create({
+      header: 'Confirmación',
+      message: 'Estás seguro de borrar el item?',
+      buttons: [
+        {
+          text: 'Si',
+          handler: () => {
+            this.shoppingList.removeItem(item);
+          }
+        },
+        {
+          text: 'No',
+          handler: () => {
+            alert.dismiss()
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
 }

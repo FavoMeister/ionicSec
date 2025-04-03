@@ -19,7 +19,7 @@ export class ShoppingItemService {
     this.isEmpty = false;
   }
 
-  removeItema(item: string){
+  removeItem(item: string){
     let index = this.items.findIndex(it => it.toUpperCase().trim() === item.toUpperCase());
     if(index != -1){
       this.items.splice(index, 1); //delete the array position
